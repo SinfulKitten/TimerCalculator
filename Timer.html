@@ -4,13 +4,11 @@
             * {
                 margin-top: auto;
                 text-align: center;
+                justify-content: center;
+                padding: 10px;
+                font-family:Arial, Helvetica, sans-serif;
             }
-            span {
-                display: flex;
-                width: 300px;
-                flex-direction: column;
-                align-content: space-between;
-            }
+
         </style>
     </head>
 
@@ -40,9 +38,9 @@
             </button>
         </span>
 
-        <div>Received at: {insert current time here}</div>
+        <div id="received">Reception details will show here</div>
         <br />
-        <div>Send at: {insert sendDay and sendHour here}</div>
+        <div id="sent">Sending details will show here</div>
         <script src="TimeScriptStandard.js"></script>
         <script src="TimeScript4Hours.js"></script>
         <script src="TimeScript8Hours.js"></script>

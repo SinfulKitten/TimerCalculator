@@ -69,39 +69,42 @@ function emailTimerStandard() {
     var min = getcurrentMin();
     let sendDay = 0;
     let sendHour = 0;
+    let sendMin = "00";
 
     //if email is recieved friday , check if it was sent before cutoff @20:00
     if (dayName == "Friday") {
         sendDay = 1; //monday
         sendHour = 7; // 07:00
-        console.log("received at: " + dayName + " " + currentHour + ":" + min);
-        console.log(
-            "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min
-        );
+        document.getElementById("received").innerHTML =
+            "received at: " + dayName + " " + currentHour + ":" + min;
+        document.getElementById("sent").innerHTML =
+            "send at: " + getDayName(sendDay) + " " + sendHour + ":" + sendMin;
 
         //checks if client email was sent during working hours , sends a email 2 hours later
         if (7 >= currentHour < 18) {
             sendDay = day;
             sendHour = currentHour + 2;
-            console.log(
-                "received at: " + dayName + " " + currentHour + ":" + min
-            );
-            console.log(
-                "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min
-            );
+            document.getElementById("received").innerHTML =
+                "received at: " + dayName + " " + currentHour + ":" + min;
+            document.getElementById("sent").innerHTML =
+                "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min;
         }
     } else if (dayName == "Saturday") {
         sendDay = 1;
         sendHour = 7;
-        console.log("received at: " + dayName + " " + currentHour + ":" + min);
-        console.log("send at: " + getDayName(sendDay) + " " + sendHour + ":" + min);
+        document.getElementById("received").innerHTML =
+            "received at: " + dayName + " " + currentHour + ":" + min;
+        document.getElementById("sent").innerHTML =
+            "send at: " + getDayName(sendDay) + " " + sendHour + ":" + sendMin;
 
-        //if email is recieved on Sunday , 24 hours are added
+        //if email is recieved on Sunday , a response is sent on Monday morning
     } else if (dayName == "Sunday") {
         sendDay = 1;
         sendHour = 7;
-        console.log("received at: " + dayName + " " + currentHour + ":" + min);
-        console.log("send at: " + getDayName(sendDay) + " " + sendHour + ":" + min);
+        document.getElementById("received").innerHTML =
+            "received at: " + dayName + " " + currentHour + ":" + min;
+        document.getElementById("sent").innerHTML =
+            "send at: " + getDayName(sendDay) + " " + sendHour + ":" + sendMin;
 
         //If between Monday and Friday, check if it is within office hours ,
         //if so , add 2 hours
@@ -109,21 +112,23 @@ function emailTimerStandard() {
         if (currentHour >= 7 && currentHour <= 18) {
             sendDay = day;
             sendHour = currentHour + 2;
-
-            console.log("received at: " + dayName + " " + currentHour + ":" + min);
-            console.log(
-                "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min
-            );
+            document.getElementById("received").innerHTML =
+                "received at: " + dayName + " " + currentHour + ":" + min;
+            document.getElementById("sent").innerHTML =
+                "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min;
             //send email
         } else {
             sendDay = day + 1;
             sendHour = 7;
-            console.log("received at: " + dayName + " " + currentHour + ":" + min);
-            console.log(
-                "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min
-            );
+            document.getElementById("received").innerHTML =
+                "received at: " + dayName + " " + currentHour + ":" + min;
+            document.getElementById("sent").innerHTML =
+                "send at: " +
+                getDayName(sendDay) +
+                " " +
+                sendHour +
+                ":" +
+                sendMin;
         }
     }
 }
-
-

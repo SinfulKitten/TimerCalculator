@@ -43,7 +43,7 @@ function checkTimeStamp() {
     //instantiating date and time objects
 
     //examples to demonstrate functionality
-    currentDate = new Date("August 11, 2022 22:15:00");
+    currentDate = new Date();
     //getting the current hour and day
 
     let currentHour = currentDate.getHours();
@@ -71,7 +71,7 @@ function getcurrentDayName(day) {
 Gets the current day in 24 hour format
 **/
 function getcurrentDay() {
-    currentDate = new Date("August 11, 2022 22:15:00");
+    currentDate = new Date();
     let currentDay = currentDate.getDay();
     return currentDay;
 }
@@ -83,196 +83,178 @@ function emailTimer168() {
     //getting the timestamp from the client email
 
     var currentHour = checkTimeStamp();
-    const date = new Date("August 11, 2022 22:15:00");
-    const sendDate = new Date("August 11, 2022 22:15:00");
+    const date = new Date();
+    const sendDate = new Date();
     let currentDate = date.getDate();
-    console.log(currentDate);
     let currentMonthName = getMonthName(date.getMonth());
     var day = getcurrentDay();
     var dayName = getcurrentDayName(day);
     var min = getcurrentMin();
-    var sendDay = 0;
-    var sendHour;
+    let sendDay = 0;
+    let sendHour = currentHour;
+    let sendMin = "00";
 
-    //if email is recieved friday , check if it was sent before cutoff @20:00
     if (dayName == "Friday") {
-        //checks if client email was sent during working hours , sends a email 2 hours later
-        if (7 >= currentHour < 18) {
+        if (7 >= currentHour < 20) {
             sendDay = day;
             sendDate.setDate(currentDate + 7);
-            sendHour = currentHour;
-            console.log(
+            document.getElementById("received").innerHTML =
                 "received at: " +
-                    dayName +
-                    " the " +
-                    currentDate +
-                    " " +
-                    currentMonthName +
-                    " " +
-                    currentHour +
-                    ":" +
-                    min
-            );
-        console.log(
-            "send at: " +
+                dayName +
+                " the " +
+                currentDate +
+                " " +
+                currentMonthName +
+                " " +
+                currentHour +
+                ":" +
+                min;
+
+            document.getElementById("sent").innerHTML =
+                "send at: " +
                 getDayName(sendDate.getDay()) +
                 " the " +
                 sendDate.getDate() +
                 " " +
                 getMonthName(sendDate.getMonth()) +
                 " " +
-                sendHour +
+                currentHour +
                 ":" +
-                min
-        );
-        }
-        else {
+                min;
+        } else {
             sendHour = 7; // 07:00
             sendDate.setDate(currentDate + 10);
-             console.log(
-                 "received at: " +
-                     dayName +
-                     " the " +
-                     currentDate +
-                     " " +
-                     currentMonthName +
-                     " " +
-                     currentHour +
-                     ":" +
-                     min
-             );
-             console.log(
-                 "send at: " +
-                     getDayName(sendDate.getDay()) +
-                     " the " +
-                     sendDate.getDate() +
-                     " " +
-                     getMonthName(sendDate.getMonth()) +
-                     " " +
-                     currentHour +
-                     ":" +
-                     min
-             );
+            document.getElementById("received").innerHTML =
+                "received at: " +
+                dayName +
+                " the " +
+                currentDate +
+                " " +
+                currentMonthName +
+                " " +
+                currentHour +
+                ":" +
+                min;
+
+            document.getElementById("sent").innerHTML =
+                "send at: " +
+                getDayName(sendDate.getDay()) +
+                " the " +
+                sendDate.getDate() +
+                " " +
+                getMonthName(sendDate.getMonth()) +
+                " " +
+                currentHour +
+                ":" +
+                sendMin;
         }
     } else if (dayName == "Saturday") {
-
         sendHour = 7;
         sendDate.setDate(currentDate + 9);
-            console.log(
-                "received at: " +
-                    dayName +
-                    " the " +
-                    currentDate +
-                    " " +
-                    currentMonthName +
-                    " " +
-                    currentHour +
-                    ":" +
-                    min
-            );
-            console.log(
-                "send at: " +
-                    getDayName(sendDate.getDay()) +
-                    " the " +
-                    sendDate.getDate() +
-                    " " +
-                    getMonthName(sendDate.getMonth()) +
-                    " " +
-                    currentHour +
-                    ":" +
-                    min
-            );
+        document.getElementById("received").innerHTML =
+            "received at: " +
+            dayName +
+            " the " +
+            currentDate +
+            " " +
+            currentMonthName +
+            " " +
+            currentHour +
+            ":" +
+            min;
 
-        //if email is recieved on Sunday , 24 hours are added
+        document.getElementById("sent").innerHTML =
+            "send at: " +
+            getDayName(sendDate.getDay()) +
+            " the " +
+            sendDate.getDate() +
+            " " +
+            getMonthName(sendDate.getMonth()) +
+            " " +
+            currentHour +
+            ":" +
+            sendMin;
     } else if (dayName == "Sunday") {
-
         sendHour = 7;
         sendDate.setDate(currentDate + 8);
-            console.log(
-                "received at: " +
-                    dayName +
-                    " the " +
-                    currentDate +
-                    " " +
-                    currentMonthName +
-                    " " +
-                    currentHour +
-                    ":" +
-                    min
-            );
-            console.log(
-                "send at: " +
-                    getDayName(sendDate.getDay()) +
-                    " the " +
-                    sendDate.getDate() +
-                    " " +
-                    getMonthName(sendDate.getMonth()) +
-                    " " +
-                    currentHour +
-                    ":" +
-                    min
-            );
+        document.getElementById("received").innerHTML =
+            "received at: " +
+            dayName +
+            " the " +
+            currentDate +
+            " " +
+            currentMonthName +
+            " " +
+            currentHour +
+            ":" +
+            min;
 
-        //If between Monday and Friday, check if it is within office hours ,
-        //if so , add 2 hours
+        document.getElementById("sent").innerHTML =
+            "send at: " +
+            getDayName(sendDate.getDay()) +
+            " the " +
+            sendDate.getDate() +
+            " " +
+            getMonthName(sendDate.getMonth()) +
+            " " +
+            currentHour +
+            ":" +
+            sendMin;
     } else if (day >= 1 && day <= 5) {
-        if (currentHour >= 7 && currentHour <= 18) {
+        if (currentHour >= 7 && currentHour <= 20) {
             sendDay = day;
             sendHour = currentHour;
             sendDate.setDate(currentDate + 7);
-            console.log(
+            document.getElementById("received").innerHTML =
                 "received at: " +
-                    dayName +
-                    " the " +
-                    currentDate +
-                    " " +
-                    currentMonthName +
-                    " " +
-                    currentHour +
-                    ":" +
-                    min
-            );
-            console.log(
+                dayName +
+                " the " +
+                currentDate +
+                " " +
+                currentMonthName +
+                " " +
+                currentHour +
+                ":" +
+                min;
+
+            document.getElementById("sent").innerHTML =
                 "send at: " +
-                    getDayName(sendDate.getDay()) +
-                    " the " +
-                    sendDate.getDate() +
-                    " " +
-                    getMonthName(sendDate.getMonth()) +
-                    " " +
-                    currentHour +
-                    ":" +
-                    min
-            );
-            //send email
+                getDayName(sendDate.getDay()) +
+                " the " +
+                sendDate.getDate() +
+                " " +
+                getMonthName(sendDate.getMonth()) +
+                " " +
+                currentHour +
+                ":" +
+                min;
         } else {
             sendDay = day + 1;
             sendHour = 7;
             sendDate.setDate(currentDate + 8);
-            console.log(
+            document.getElementById("received").innerHTML =
                 "received at: " +
-                    dayName +
-                    " the " +
-                    currentDate +
-                    " " +
-                    currentMonthName +
-                    " " +
-                    currentHour +
-                    ":" +
-                    min
-            );
-            console.log(
+                dayName +
+                " the " +
+                currentDate +
+                " " +
+                currentMonthName +
+                " " +
+                currentHour +
+                ":" +
+                min;
+
+            document.getElementById("sent").innerHTML =
                 "send at: " +
-                    getDayName(sendDate.getDay()) +
-                    " the " +
-                    sendDate.getDate() +
-                    " " +
-                    getMonthName(sendDate.getMonth()) +
-                    " " +
-                    sendHour +
-                    ":" +
-                    min
-            );
+                getDayName(sendDate.getDay()) +
+                " the " +
+                sendDate.getDate() +
+                " " +
+                getMonthName(sendDate.getMonth()) +
+                " " +
+                currentHour +
+                ":" +
+                sendMin;
         }
     }
 }

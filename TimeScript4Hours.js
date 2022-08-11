@@ -25,6 +25,8 @@ function checkTimeStamp() {
     //instantiating date and time objects
 
     //examples to demonstrate functionality
+    //currentDate = new Date("August 11, 2022 12:00:00");
+
     currentDate = new Date();
     //getting the current hour and day
     let currentHour = currentDate.getHours();
@@ -58,7 +60,7 @@ function getcurrentDay() {
 }
 
 /*
-checks when the client email was sent , calculates the day and hour of which a reply is sent
+checks when the client email was sent, calculates the day and hour of which a reply is sent
 **/
 function emailTimer4() {
     //getting the timestamp from the client email
@@ -67,63 +69,76 @@ function emailTimer4() {
     var day = getcurrentDay();
     var dayName = getcurrentDayName(day);
     var min = getcurrentMin();
-    var sendDay = 0;
-    var sendHour = 0;
+    let sendDay = 0;
+    let sendHour = 0;
+    let sendMin = "00";
 
-    //if email is recieved friday , check if it was sent before cutoff @20:00
+    //if email is recieved friday, check if it was sent before cutoff @20:00
     if (dayName == "Friday") {
-        sendDay = 1; //monday
-        sendHour = 7; // 07:00
-        console.log("received at: " + dayName + " " + currentHour + ":" + min);
-        console.log(
-            "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min
-        );
-
-        //checks if client email was sent during working hours , sends a email 4 hours later
+        //checks if client email was sent during working hours, sends a email 4 hours later
         if (7 >= currentHour < 16) {
             sendDay = day;
             sendHour = currentHour + 4;
-            console.log(
-                "received at: " + dayName + " " + currentHour + ":" + min
-            );
-            console.log(
-                "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min
-            );
+            document.getElementById("received").innerHTML =
+                "received at: " + dayName + " " + currentHour + ":" + min;
+            document.getElementById("sent").innerHTML =
+                "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min;
+        } else {
+            sendDay = 1; //monday
+            sendHour = 7; // 07:00
+            document.getElementById("received").innerHTML =
+                "received at: " + dayName + " " + currentHour + ":" + min;
+            document.getElementById("sent").innerHTML =
+                "send at: " +
+                getDayName(sendDay) +
+                " " +
+                sendHour +
+                ":" +
+                sendMin;
         }
+
+        //if email is recieved on Saturday, 48 hours are added
     } else if (dayName == "Saturday") {
         sendDay = 1;
         sendHour = 7;
-        console.log("received at: " + dayName + " " + currentHour + ":" + min);
-        console.log("send at: " + getDayName(sendDay) + " " + sendHour + ":" + min);
+        document.getElementById("received").innerHTML =
+            "received at: " + dayName + " " + currentHour + ":" + min;
+        document.getElementById("sent").innerHTML =
+            "send at: " + getDayName(sendDay) + " " + sendHour + ":" + sendMin;
 
-        //if email is recieved on Sunday , 24 hours are added
+        //if email is recieved on Sunday, 24 hours are added
     } else if (dayName == "Sunday") {
         sendDay = 1;
         sendHour = 7;
-        console.log("received at: " + dayName + " " + currentHour + ":" + min);
-        console.log("send at: " + getDayName(sendDay) + " " + sendHour + ":" + min);
+        document.getElementById("received").innerHTML =
+            "received at: " + dayName + " " + currentHour + ":" + min;
+        document.getElementById("sent").innerHTML =
+            "send at: " + getDayName(sendDay) + " " + sendHour + ":" + sendMin;
 
         //If between Monday and Friday, check if it is within office hours ,
-        //if so , add 2 hours
-    } else if (day >= 1 && day <= 5) {
+        //if so, add 4 hours
+    } else if (day >= 1 && day <= 4) {
         if (currentHour >= 7 && currentHour <= 16) {
             sendDay = day;
             sendHour = currentHour + 4;
 
-            console.log("received at: " + dayName + " " + currentHour + ":" + min);
-            console.log(
-                "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min
-            );
+            document.getElementById("received").innerHTML =
+                "received at: " + dayName + " " + currentHour + ":" + min;
+            document.getElementById("sent").innerHTML =
+                "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min;
             //send email
         } else {
             sendDay = day + 1;
             sendHour = 7;
-            console.log("received at: " + dayName + " " + currentHour + ":" + min);
-            console.log(
-                "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min
-            );
+            document.getElementById("received").innerHTML =
+                "received at: " + dayName + " " + currentHour + ":" + min;
+            document.getElementById("sent").innerHTML =
+                "send at: " +
+                getDayName(sendDay) +
+                " " +
+                sendHour +
+                ":" +
+                sendMin;
         }
     }
 }
-
-
