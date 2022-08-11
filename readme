@@ -1,0 +1,18 @@
+//Assignment brief
+
+//Client sends request to server
+// - automatic bot email recieved
+
+//Must be recieved by client from company during working hours
+// Working hours defined as mon-fri 7:00 to 20:00 excluding weekends
+
+//script must compute a date/time stamp in usual format 24 hour
+//input given , output given 2 hours later or on next working day NB (thinking if time received between 7:00 - 18:00, setTimeOut(2hr or something))!
+//of input given on weekend , output given on monday morning (setTimeOut(Monday 7:00))
+
+// input?
+
+//We also need the same logic for now + 4 hours, now + 8 hours, now + 24 hours + 48 hours,
+//+ 72 hours and + 168 hours to simulate different durations of "human" work on the case.
+
+// have options for how long to set a timer for 2/4/8/24/48/78/168?

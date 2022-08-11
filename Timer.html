@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <style>
+            * {
+                margin-top: auto;
+                text-align: center;
+            }
+            span {
+                display: flex;
+                width: 300px;
+                flex-direction: column;
+                align-content: space-between;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Send Request</h1>
+        <span>
+            <button onclick="emailTimerStandard()">
+                Push Me to Send within 2 hours
+            </button>
+            <button onclick="emailTimer4()">
+                Push Me to Send within 4 hours
+            </button>
+            <button onclick="emailTimer8()">
+                Push Me to Send within 8 hours
+            </button>
+            <button onclick="emailTimer24()">
+                Push Me to Send within 24 hours
+            </button>
+            <button onclick="emailTimer48()">
+                Push Me to Send within 48 hours
+            </button>
+            <button onclick="emailTimer72()">
+                Push Me to Send within 72 hours
+            </button>
+            <button onclick="emailTimer168()">
+                Push Me to Send within 168 hours
+            </button>
+        </span>
+
+        <div>Received at: {insert current time here}</div>
+        <br />
+        <div>Send at: {insert sendDay and sendHour here}</div>
+        <script src="TimeScriptStandard.js"></script>
+        <script src="TimeScript4Hours.js"></script>
+        <script src="TimeScript8Hours.js"></script>
+        <script src="TimeScript24Hours.js"></script>
+        <script src="TimeScript48Hours.js"></script>
+        <script src="TimeScript72Hours.js"></script>
+        <script src="TimeScript168Hours.js"></script>
+    </body>
+</html>
