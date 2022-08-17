@@ -90,8 +90,8 @@ function emailTimer168() {
     var day = getcurrentDay();
     var dayName = getcurrentDayName(day);
     var min = getcurrentMin();
-    let sendDay = 0;
-    let sendHour = currentHour;
+    // let sendDay = 0;
+    // let sendHour = currentHour;
     let sendMin = "00";
 
     if (dayName == "Friday") {
@@ -122,6 +122,7 @@ function emailTimer168() {
                 ":" +
                 min;
         } else {
+            //friday out of trading hours
             sendHour = 7; // 07:00
             sendDate.setDate(currentDate + 10);
             document.getElementById("received").innerHTML =
@@ -229,6 +230,7 @@ function emailTimer168() {
                 ":" +
                 min;
         } else {
+            //if email is sent out of working hours , send reply a week and one day later
             sendDay = day + 1;
             sendHour = 7;
             sendDate.setDate(currentDate + 8);

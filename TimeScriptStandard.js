@@ -73,13 +73,6 @@ function emailTimerStandard() {
 
     //if email is recieved friday , check if it was sent before cutoff @20:00
     if (dayName == "Friday") {
-        sendDay = 1; //monday
-        sendHour = 7; // 07:00
-        document.getElementById("received").innerHTML =
-            "received at: " + dayName + " " + currentHour + ":" + min;
-        document.getElementById("sent").innerHTML =
-            "send at: " + getDayName(sendDay) + " " + sendHour + ":" + sendMin;
-
         //checks if client email was sent during working hours , sends a email 2 hours later
         if (7 >= currentHour < 18) {
             sendDay = day;
@@ -88,6 +81,18 @@ function emailTimerStandard() {
                 "received at: " + dayName + " " + currentHour + ":" + min;
             document.getElementById("sent").innerHTML =
                 "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min;
+        } else {
+            sendDay = 1; //monday
+            sendHour = 7; // 07:00
+            document.getElementById("received").innerHTML =
+                "received at: " + dayName + " " + currentHour + ":" + min;
+            document.getElementById("sent").innerHTML =
+                "send at: " +
+                getDayName(sendDay) +
+                " " +
+                sendHour +
+                ":" +
+                sendMin;
         }
     } else if (dayName == "Saturday") {
         sendDay = 1;
@@ -116,7 +121,7 @@ function emailTimerStandard() {
                 "received at: " + dayName + " " + currentHour + ":" + min;
             document.getElementById("sent").innerHTML =
                 "send at: " + getDayName(sendDay) + " " + sendHour + ":" + min;
-            //send email
+            //send email on Monday morning@7:00 if email is sent on sunday
         } else {
             sendDay = day + 1;
             sendHour = 7;
